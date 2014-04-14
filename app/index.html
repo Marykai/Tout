@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html ng-app="toutApp">
+<head >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	<title>
+		TOUT VA la nuit
+	</title>
+	<link href="http://marco.lochiva.com/TOU_toutva/favicon.ico" type="image/x-icon" rel="icon" />
+	<link href="http://marco.lochiva.com/TOU_toutva/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+	<link rel="stylesheet" type="text/css" href="http://marco.lochiva.com/TOU_toutva/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://marco.lochiva.com/TOU_toutva/css/reveal.css" />
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>-->
+  <script src="bower_components\angular\angular.min.js"></script>
+  <script src="jQuery-2.1.0.min.js"></script>
+ 	<script src="scripts\controllers\MainCtrl.js"></script>
+  
+</head>
+<body ng-controller="MainCtrl">
+<style>
+	tr.active {
+    background-color: #8EC16D;
+   
+}
+
+</style>	
+	<div id="container">
+		<div id="content">
+
+			
+			<script>
+    var basePath = '/TOU_toutva/';
+    var tot = 451.00;
+</script>
+<script type="text/javascript" src="/TOU_toutva/js/cassa.js"></script><div class="pag-cassa">
+	
+	<div class="navbar">
+	  	<div class="navbar-collapse">
+			<ul class="nav">
+			    <li><a href="#">STAMPA</a></li>
+				<li><a href="#">PRECONTO</a></li>
+				<li><a href="#">CHIUDI</a></li>
+		    </ul>
+	    	<script>
+    
+    $(document).ready(function(){
+        orologio();
+    });
+    
+    function orologio(){
+        
+        var data = new Date();
+        var hh = data.getHours();
+        if(hh.toString().length == 1){hh = "0" + hh.toString();}
+        var mm = data.getMinutes();
+        if(mm.toString().length == 1){mm = "0" + mm.toString();}
+        var ss = data.getSeconds();
+        if(ss.toString().length == 1){ss = "0" + ss.toString();}
+        
+        var anno = data.getFullYear();
+        var giorno = data.getDate();
+        var mese = data.getMonth();
+        var mesi=new Array(12);
+        mesi[0] = "Gennaio";
+        mesi[1] = "Febbraio";
+        mesi[2] = "Marzo";
+        mesi[3] = "Aprile";
+        mesi[4] = "Maggio";
+        mesi[5] = "Giugno";
+        mesi[6] = "Luglio";
+        mesi[7] = "Agosto";
+        mesi[8] = "Settembre";
+        mesi[9] = "Ottobre";
+        mesi[10] = "Novembre";
+        mesi[11] = "Dicembre";
+        
+        var ora = hh + ":" + mm + ":" + ss;
+        var data = giorno + " " + mesi[mese] + " " + anno;
+        
+        $("#ora").html(ora);
+        $("#data").html(data);
+        
+        window.setTimeout("orologio()", 1000);
+        
+    }
+    
+</script>
+
+ 
+<div class="logout">
+	<a href="#">LOGOUT</a>
+</div>
+<div class="date">
+	
+	<h1 id="data">12 Febbraio 2014</h1>
+	<p class="barra">|</p>
+	<h1 id="ora">23:45:04</h1>
+	<p class="barra">|</p>
+</div>	  	</div>
+	</div>
+	
+	<div class="sub-menu">
+		<div class="menu-input">
+			<fieldset>
+				<legend><h3>Tavolo</h3></legend>
+				<input type="text" value="14" disabled/>
+				<input id="numTavolo" type="hidden" value="14T" />
+                <input id="idTavolo" type="hidden" value="2" />
+			</fieldset>
+			<fieldset>
+				<legend><h3>Nome tavolo</h3></legend>
+				<input type="text" value="Pippo" disabled/>
+			</fieldset>
+			<fieldset>
+				<legend><h3>Persone</h3></legend>
+				<input type="text" value="2" disabled/>
+			</fieldset>
+			<fieldset>
+				<legend><h3>Inizio</h3></legend>
+				<input type="text" value="16:08:16" disabled/>
+			</fieldset>
+			<fieldset>
+				<legend><h3>Cameriere</h3></legend>
+				<input type="text" value="" disabled/>
+			</fieldset>		
+		</div>
+	</div>
+				
+	<div class="cassa-res bg-box">
+		
+			<table>
+				<tr>
+					<th class="td_1">
+						Cod.Prod
+					</th>
+					<th class="td_2">
+						Descrizione
+					</th>
+					<th class="td_3">
+						Qta
+					</th>
+					<th class="td_4">
+						Prezzo
+					</th>
+					<th class="td_5">
+						Totale
+					</th>
+					<th class="td_6">
+						Ora
+					</th>
+				</tr>
+			</table >
+		<div class="overflow-table">
+			<table >
+							
+								
+              <tr ng-click="toggleActive(prodotto)" ng-class="{active:prodotto.active}"
+							ng-repeat="prodotto in prodotto" class="tr-prodotti" >
+						      <td >{{prodotto.codProdotto}}</td>
+						      <td>{{prodotto.Descrizione}}</td>
+						      <td>{{prodotto.Qta}}</td>
+						      <td>{{prodotto.Prezzo}}</td>
+						      <td>{{prodotto.Qta * prodotto.Prezzo }}</td> <!--moltiplicazione direttamente-->
+						      <td>{{prodotto.Ora}}</td>
+						</tr>
+			
+			</table>
+		</div>
+	</div>
+	<div class=" cassa-art bg-box">
+		
+			<table>
+				<tr>
+					<th class="td_1">
+						Cod. Artista
+					</th>
+					<th class="td_2">
+						Nome Artista
+					</th>
+					<th class="td_3">
+						Ora
+					</th>
+				</tr>
+			</table>
+			<div class="overflow-table">
+			<table>
+					                
+	                	                    <tr>
+	                        <td class="td_1">2</td>
+	                        <td class="td_2">Mary</td>
+	                        <td class="td_3">17:10</td>
+	                    </tr>
+	                	                    <tr>
+	                        <td class="td_1">6</td>
+	                        <td class="td_2">Carla</td>
+	                        <td class="td_3">17:10</td>
+	                    </tr>
+	                	                    <tr>
+	                        <td class="td_1">7</td>
+	                        <td class="td_2">Pippo</td>
+	                        <td class="td_3">17:10</td>
+	                    </tr>
+	                	                    <tr>
+	                        <td class="td_1">2</td>
+	                        <td class="td_2">Mary</td>
+	                        <td class="td_3">16:08</td>
+	                    </tr>
+	                	                    <tr>
+	                        <td class="td_1">6</td>
+	                        <td class="td_2">Carla</td>
+	                        <td class="td_3">16:08</td>
+	                    </tr>
+	                	                
+	            				
+				
+			</table>
+		</div>
+		<div class="line-separed"></div>
+		<p>Art: <b>{{}}</b></p>
+		<p>Prod: <b>{{quanto()}}</b></p>
+		<p>Tot tavolo: <b>€ {{totaleConsumazioni()}}</b></p>
+		<p>Ora: <b></b></p>
+	</div>
+  
+  <!--http://stackoverflow.com/questions/11703477/pass-variables-to-angularjs-controller-best-practice
+      http://jsfiddle.net/2MbZY/-->
+	<div class="pagamento bg-box last">
+		<form>
+			<p>Contanti</p>
+			<input class="sub-tot" type="text" ng-model="contanti" value="0.00" /><br />
+			<p>Bancomat</p>
+			<input class="sub-tot" type="text"  ng-model="bancomat" value="0.00" /><br />
+			<p>Carte di credito</p>
+			<input class="sub-tot" type="text"  ng-model="credito" value="0.00" /><br />
+			<p>Assegni</p>
+			<input class="sub-tot" type="text"  ng-model="assegni" value="0.00" /><br />
+			<div class="line-separed"></div>
+			<p>Sconto %</p>
+      <input class="sconto-mini" type="text" ng-model="percentualeInserita" value="0.00" size="5" />
+			<input class="sconto-percentuale" value={{scontoPercentuale()}} type="text"/><br />
+           
+			<p>Sconto manuale</p>
+			<input class="sconto-netto" type="text" ng-model="manuale" value= /><br />
+			<p>Sconto prodotti</p>
+            <input class="sconto-prodotti" type="text" value={{scontoProdotti()}} disabled/><br />
+			<div class="line-separed"></div>
+			<p>Da pagare</p>
+			<input id="resto" type="text" value={{totaleDaPagare()}} disabled/> <!--da fare come funzione, non voglio sommare i model qui.Parlare con Ruffy-->
+		</form>
+		<div class="line-separed"></div>
+		<div>
+			<a id="btn-scontrino" class="btn-gray" href="#">scontrino</a>
+		</div>
+		<!--
+		<div>
+			<a class="btn-gray" href="#">fattura</a>
+		</div>
+		<div>
+			<a class="btn-gray" href="#">ricevuta</a>
+		</div>
+		-->
+	</div>
+	<div class="clear-both"></div>
+</div>			<script>
+    var pwConfirmAccess = "password";
+</script>
+<div id="myModalPassword" class="reveal-modal small-reveal">
+    <h1>Inserire la password di sistema:</h1>
+    <input id="passConfirmAccess" type="password" name="passwordSistema" value="" />
+    <div> 
+    	<input id="annullaPassword" class="close-reveal-modal submit-gray" type="button" value="Annulla" />
+    	<input id="okPassword" class="close-reveal-modal" type="button" value="Ok" />
+    </div>
+    
+</div>		</div>
+	</div>
+	</body>
+</html>
